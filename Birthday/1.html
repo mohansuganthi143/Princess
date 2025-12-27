@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Suganthi Ma</title>
+
+<style>
+body{
+    margin:0;
+    font-family:"Segoe UI",sans-serif;
+    background:linear-gradient(135deg,#ffe6f0,#e0f7fa,#fff1c1);
+    text-align:center;
+    overflow-x:hidden;
+}
+
+/* Logo */
+.logo img{
+    width:120px;
+    margin-top:20px;
+}
+
+/* Gradient Title */
+h1{
+    font-size:42px;
+    margin:10px 0 20px;
+    letter-spacing:3px;
+    background:linear-gradient(to right,#ff006e,#8338ec,#3a86ff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+/* ===== SLIDER ===== */
+.slider{
+    width:100%;
+    overflow:hidden;
+    padding:20px 0;
+}
+
+.track{
+    display:flex;
+    gap:8px;          /* very small distance */
+    width:max-content;
+}
+
+.frame{
+    width:180px;
+    height:180px;
+    flex-shrink:0;
+    border-radius:18px;
+    overflow:hidden;
+    background:#fff;
+    box-shadow:0 10px 25px rgba(0,0,0,.35);
+}
+
+.frame img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* Content */
+.content{
+    width:80%;
+    margin:30px auto;
+    background:rgba(255,255,255,.65);
+    padding:20px;
+    border-radius:20px;
+    max-height:200px;
+    overflow-y:auto;
+}
+
+/* Video */
+video{
+    width:70%;
+    margin:20px auto;
+    display:none;
+    border-radius:15px;
+}
+
+/* Button */
+button{
+    padding:12px 30px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(to right,#ff4d6d,#ff758f);
+    color:#fff;
+    cursor:pointer;
+}
+
+/* Quote */
+.quote{
+    margin:30px auto;
+    padding:15px 25px;
+    background:rgba(255,255,255,.6);
+    border-radius:20px;
+    font-size:22px;
+    font-style:italic;
+    color:#9d0208;
+}
+</style>
+</head>
+
+<body>
+
+<div class="logo">
+    <img src="logo.png">
+</div>
+
+<h1>Suganthi Ma</h1>
+
+<!-- TRUE INFINITE SLIDER -->
+<div class="slider">
+    <div class="track" id="track">
+        <div class="frame"><img src="Birthday/nature.jpg"></div>
+        <div class="frame"><img src="C:\Users\Thirumurugan M\OneDrive\Desktop\New folder\Picsart_25-12-27_19-24-31-479"></div>
+        <div class="frame"><img src="https://picsum.photos/id/1035/300/300"></div>
+        <div class="frame"><img src="https://picsum.photos/id/1045/300/300"></div>
+        <div class="frame"><img src="https://picsum.photos/id/1055/300/300"></div>
+    </div>
+</div>
+
+<div class="content">
+<p>
+First Naa unta pesum pothu na epdi irunthana ellaru ponnungalta pesuranga jolly ya irukkanga nu naanu neraiya perta pesa aaramichen but un expected da unta pesa aramichen en friend ala 😜 apram ennoda friend aninga ✌🏻
+Naduvula sila misunderstanding 😔💔 
+Apram Konjam pesinom innam friend Anom like a close friend 🫂 Nanu ellame unta share pannirukken en past ellame athu ellame unakku theriyum un edathula Vera yaaravathu irunthuruntha kandippa enna evalo kevalama nenachuruppanga nu enakke theriyum but nee enna ethume sollala en Mela thappe illatha mathiri enakku pesi puriya vacha ana Naa pannathu la thappu tha but nee enna purijukitta thanks 🤗 
+Unta pesunathukku apram ethanaiyo Peru naduvula vanthu Konjam naal pesi nanu happy ya tha iruntha 😇 Konjam naal apram eppavu pola tha ellame mudinjudum 🙂  Avanga Ella vittutu porappo unta vanthu solli alumpothu avalo nambikkaiya irukku, romba nimmathiya irukkum 😌  Oru Oru thara vanthu enta pesunappo Naa la unta athigam pesave illa en situation apdi irunthathu , Avangala vanthu poittanga ana Avangalukku munnadi  irunthu ippo varaikkam koodave irukka romba santhosama tha irukku ana innam Ethana Nalaikku nu therla Athu innam en manasula ooditte irukku appappo Konjam kashtama tha irukku , Ennoda pain mattume Naa share pannittu iruntha neeyu ethu sangata padama porumaiya kettu evalo aaruthal sollirukka Romba Thanks 🥹🙏🏻
+</p>
+</div>
+
+<button onclick="playVideo()">Play Video</button>
+
+<video id="myVideo" controls>
+    <source src="video.mp4" type="video/mp4">
+</video>
+
+<div class="quote">
+“Love begins at home, and it never ends ❤️”
+</div>
+
+<script>
+/* ===== TRUE INFINITE LOGIC ===== */
+const track = document.getElementById("track");
+let speed = 0.5;   // 🔹 increase = faster, decrease = slower
+let position = 0;
+
+// Clone images continuously
+function cloneItems(){
+    const items = Array.from(track.children);
+    items.forEach(item=>{
+        track.appendChild(item.cloneNode(true));
+    });
+}
+cloneItems(); // first expansion
+
+function animate(){
+    position -= speed;
+    track.style.transform = `translateX(${position}px)`;
+
+    // When first image fully exits, reset without jump
+    const firstItem = track.children[0];
+    if (-position >= firstItem.offsetWidth + 8){
+        position += firstItem.offsetWidth + 8;
+        track.appendChild(firstItem);
+    }
+
+    requestAnimationFrame(animate);
+}
+animate();
+
+function playVideo(){
+    const v=document.getElementById("myVideo");
+    v.style.display="block";
+    v.play();
+}
+</script>
+
+</body>
+</html>
